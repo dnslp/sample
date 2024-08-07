@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Passage Display</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        h1,
+        h2 {
+            color: #0073e6;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        select:focus {
+            border-color: #0073e6;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 115, 230, 0.2);
+        }
+
+        #text-display {
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            margin-bottom: 30px;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .toggle-button {
+            background-color: #0073e6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .toggle-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Vocal Sample Intake</h1>
+        <ul>
+            <li>For iPhone, use Voice Memos</li>
+            <li>For Android, use Voice Recorder</li>
+            <li>Record in a small, quiet room</li>
+            <li>Make sure there are no background sounds (fans, traffic, etc.)</li>
+        </ul>
+        <button class="toggle-button" onclick="toggleInstructions('iphone-instructions')">Instructions for iPhone</button>
+        <div id="iphone-instructions" class="instructions">
+            <h3>Instructions for Using Voice Memos on iPhone to Save and Upload a Recording</h3>
+            <ol>
+                <li><strong>Record a Voice Memo</strong>
+                    <ol>
+                        <li>Open the Voice Memos app on your iPhone.</li>
+                        <li>Tap the red Record button to start recording.</li>
+                        <li>Tap the red Stop button to finish recording.</li>
+                    </ol>
+                </li>
+                <li><strong>Save the Recording to Files</strong>
+                    <ol>
+                        <li>Tap on the recording you just made to select it.</li>
+                        <li>Tap the three dots (more options) icon next to the recording.</li>
+                        <li>Select Save to Files from the menu.</li>
+                        <li>Choose the location where you want to save the file (e.g., iCloud Drive, On My iPhone).</li>
+                        <li>Tap Save at the top right corner.</li>
+                    </ol>
+                </li>
+                <li><strong>Upload the Recording</strong>
+                    <ol>
+                        <li>Open the <a href="https://forms.gle/7XyhAcujb8VqiGRV9">Google Form </a> where you need to upload the recording.</li>
+                        <li>Tap the Upload button (usually represented by a paperclip or a cloud icon).</li>
+                        <li>Navigate to the location where you saved the recording.</li>
+                        <li>Select the recording to upload it.</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+        <button class="toggle-button" onclick="toggleInstructions('android-instructions')">Instructions for Android</button>
+        <div id="android-instructions" class="instructions">
+            <h3>Instructions for Using Voice Recorder on Android to Save and Upload a Recording</h3>
+            <ol>
+                <li><strong>Record a Voice Memo</strong>
+                    <ol>
+                        <li>Open the Voice Recorder app on your Android device.</li>
+                        <li>Tap the red Record button to start recording.</li>
+                        <li>Tap the red Stop button to finish recording.</li>
+                    </ol>
+                </li>
+                <li><strong>Save the Recording to Files</strong>
+                    <ol>
+                        <li>The recording is usually saved automatically. To locate it, go to the Files or My Files app on your device.</li>
+                        <li>Navigate to the Audio or Recordings folder.</li>
+                    </ol>
+                </li>
+                <li><strong>Upload the Recording</strong>
+                    <ol>
+                        <li>Open the <a href="https://forms.gle/7XyhAcujb8VqiGRV9">Google Form </a></li>
+                        <li>Tap the Upload button (usually represented by a paperclip or a cloud icon).</li>
+                        <li>Navigate to the Audio or Recordings folder where your recording is saved.</li>
+                        <li>Select the recording to upload it.</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+        <h2>Select Text To Read Aloud</h2>
+        <select id="dropdown" onchange="displayText()">
+            <option value="">--Select an option--</option>
+            <option value="rainbow">Rainbow</option>
+            <option value="dragons">Dragons</option>
+            <option value="bread">Bread</option>
+            <option value="moon">Moon</option>
+        </select>
+        <div id="text-display"></div>
+      
+    </div>
+    <script>
+        const textPassages = {
+            rainbow: `
+            When the sunlight strikes raindrops in the air, they act as a prism and form a rainbow. The rainbow is a division of white light into many beautiful colors. These take the shape of a long round arch, with its path high above, and its two ends apparently beyond the horizon.
+            
+            There is, according to legend, a boiling pot of gold at one end. People look, but no one ever finds it. When a man looks for something beyond his reach, his friends say he is looking for the pot of gold at the end of the rainbow. Throughout the centuries people have explained the rainbow in various ways. Some have accepted it as a miracle without physical explanation. To the Hebrews it was a token that there would be no more universal floods.
+            
+            The Greeks used to imagine that it was a sign from the gods to foretell war or heavy rain. The Norsemen considered the rainbow as a bridge over which the gods passed from earth to their home in the sky. Others have tried to explain the phenomenon physically. Aristotle thought that the rainbow was caused by reflection of the sun's rays by the rain. Since then physicists have found that it is not reflection, but refraction by the raindrops which causes the rainbows. `,
+            bread: `Baking bread is an ancient craft, cherished across cultures and generations. First, gather your ingredients: flour, yeast, salt, and water. Mix them gently until a soft dough forms. Knead it thoroughly, pressing and folding, feeling it transform beneath your hands. As it rises, it doubles in size, the yeast working its magic, creating pockets of air that will give the bread its soft, airy texture.
+    
+    Shape the dough into a loaf, then let it rise again, covering it with a damp cloth. Preheat your oven, the heat necessary to transform the dough into golden perfection. The scent of baking bread fills the kitchen, a comforting aroma that promises warmth and nourishment. When the crust is golden and firm, remove the loaf and let it cool, resisting the temptation to slice it too soon.
+    
+    The first bite of fresh, homemade bread is a delight, the crust crisp and the interior soft and warm. Each slice carries the essence of the baker's skill and patience, a testament to the timeless art of bread-making.`,
+            dragons: `
+            Dragons, majestic and mythical, have captivated imaginations for centuries. These legendary creatures, with scales that shimmer in the sunlight, wings that span the sky, and fiery breath, are both feared and revered. In tales of old, dragons guarded vast treasures, their lairs hidden in mountains or deep within enchanted forests.
+    
+    Heroes and knights sought to challenge these beasts, embarking on quests filled with peril. The roar of a dragon could be heard miles away, a sound that struck fear into the hearts of villagers. Yet, not all dragons were foes; some were wise and noble, bestowing knowledge and gifts upon those deemed worthy.
+    
+    Their eyes, often described as piercing and intelligent, seemed to hold the secrets of the ages. The bond between dragon and rider, in some stories, was one of deep trust and mutual respect. These partnerships, though rare, led to epic adventures and the forging of unbreakable alliances.
+    
+    In modern fantasy, dragons continue to soar across the pages of books and screens of movies, their legacy enduring. They symbolize power, wisdom, and mystery, a testament to the enduring allure of these magnificent creatures.`,
+            moon: `
+            The moon, a celestial beacon, has fascinated humanity since time immemorial. Its pale, luminous glow casts a serene light across the night sky, influencing tides and inspiring countless myths and legends. As it orbits the Earth, the moon goes through phases, from the slender crescent to the full, round brilliance that illuminates the darkness.
+    
+    In ancient times, civilizations built their calendars around the lunar cycle, tracking the passage of months by observing its changes. Astronomers and poets alike have gazed at the moon, finding inspiration in its ever-changing face. The surface of the moon, marked by craters and ancient volcanic plains, tells the story of its turbulent past.
+    
+    During a total lunar eclipse, the moon takes on a reddish hue, earning the nickname "blood moon." This phenomenon occurs when the Earth comes between the sun and the moon, casting a shadow that transforms its usual silvery appearance. The moon landings of the 20th century brought this distant world closer, as astronauts set foot on its barren landscape and brought back samples for study.
+    
+    Legends speak of moon goddesses and mythical creatures that inhabit this glowing orb. The moon continues to be a source of wonder, its silent presence a reminder of the vastness and mystery of the universe. Whether observed through a telescope or admired with the naked eye, the moon remains a symbol of beauty and enigma.`,
+        };
+    
+        function displayText() {
+            const dropdown = document.getElementById('dropdown');
+            const textDisplay = document.getElementById('text-display');
+            const selectedValue = dropdown.value;
+            textDisplay.innerText = textPassages[selectedValue] || '';
+        }
+    
+        function toggleInstructions(id) {
+        const element = document.getElementById(id);
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+    </script>
+</body>
+
+</html>
