@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>Text Passage Display</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Nunito", sans-serif;
+ 
             background-color: #f4f4f9;
             color: #333;
             margin: 0;
@@ -33,6 +37,7 @@
         h2 {
             color: #0073e6;
             text-align: center;
+            font-weight: 800;
         }
 
         h1 {
@@ -97,15 +102,24 @@
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 15px;
+            padding: 10px 10px;
             cursor: pointer;
             margin-bottom: 10px;
             width: 100%;
             text-align: left;
+            font-size: large;
         }
 
         .toggle-button:focus {
             outline: none;
+        }
+        .font-button{
+            font-size: 1em !important;
+            background-color: #9ac9f8;
+            border: none;
+            border-radius: 5px;
+            padding: 9px 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -119,7 +133,22 @@
             <li>Record in a small, quiet room</li>
             <li>Make sure there are no background sounds (fans, traffic, etc.)</li>
         </ul>
-        <button class="toggle-button" onclick="toggleInstructions('iphone-instructions')">Instructions for
+    
+        <h2>Select Text To Read Aloud</h2>
+        <select id="dropdown" onchange="displayText()">
+            <option value="">--Select an option--</option>
+            <option value="rainbow">Rainbow</option>
+            <option value="dragons">Dragons</option>
+            <option value="bread">Bread</option>
+            <option value="moon">Moon</option>
+        </select>
+        <div style="text-align: center;">
+            <p> <button class="font-button" onclick="changeFontSize('increase')">+</button>  Font Size  <button class="font-button" onclick="changeFontSize('decrease')">-</button></p>
+            
+        </div>
+
+        <div id="text-display"></div>
+        <button class="toggle-button" style="background-color: rgb(118, 116, 116);" onclick="toggleInstructions('iphone-instructions')">Instructions for
             iPhone</button>
         <div id="iphone-instructions" class="instructions">
             <h3>Instructions for Using Voice Memos on iPhone to Save and Upload a Recording</h3>
@@ -128,7 +157,8 @@
                     <ol>
                         <li>Open the Voice Memos app on your iPhone.</li>
                         <li>Tap the red Record button to start recording.</li>
-                        <li>Tap the red Stop button to finish recording.</li>
+                        <li>Return to this page to read your selected text out loud.</li>
+                        <li>Return to Voice Memos and tap the red Stop button to finish recording.</li>
                     </ol>
                 </li>
                 <li><strong>Save the Recording to Files</strong>
@@ -151,7 +181,7 @@
                 </li>
             </ol>
         </div>
-        <button class="toggle-button" onclick="toggleInstructions('android-instructions')">Instructions for
+        <button class="toggle-button" style="background-color:green"  onclick="toggleInstructions('android-instructions')">Instructions for
             Android</button>
         <div id="android-instructions" class="instructions">
             <h3>Instructions for Using Voice Recorder on Android to Save and Upload a Recording</h3>
@@ -160,7 +190,8 @@
                     <ol>
                         <li>Open the Voice Recorder app on your Android device.</li>
                         <li>Tap the red Record button to start recording.</li>
-                        <li>Tap the red Stop button to finish recording.</li>
+                        <li>Return to this page to read your selected text out loud.</li>   
+                        <li>Return to Voice Recorder and tap the red Stop button to finish recording.</li>
                     </ol>
                 </li>
                 <li><strong>Save the Recording to Files</strong>
@@ -180,16 +211,6 @@
                 </li>
             </ol>
         </div>
-        <h2>Select Text To Read Aloud</h2>
-        <select id="dropdown" onchange="displayText()">
-            <option value="">--Select an option--</option>
-            <option value="rainbow">Rainbow</option>
-            <option value="dragons">Dragons</option>
-            <option value="bread">Bread</option>
-            <option value="moon">Moon</option>
-        </select>
-        <div id="text-display"></div>
-
     </div>
     <script>
         const textPassages = {
@@ -199,7 +220,8 @@
             There is, according to legend, a boiling pot of gold at one end. People look, but no one ever finds it. When a man looks for something beyond his reach, his friends say he is looking for the pot of gold at the end of the rainbow. Throughout the centuries people have explained the rainbow in various ways. Some have accepted it as a miracle without physical explanation. To the Hebrews it was a token that there would be no more universal floods.
             
             The Greeks used to imagine that it was a sign from the gods to foretell war or heavy rain. The Norsemen considered the rainbow as a bridge over which the gods passed from earth to their home in the sky. Others have tried to explain the phenomenon physically. Aristotle thought that the rainbow was caused by reflection of the sun's rays by the rain. Since then physicists have found that it is not reflection, but refraction by the raindrops which causes the rainbows. `,
-            bread: `Baking bread is an ancient craft, cherished across cultures and generations. First, gather your ingredients: flour, yeast, salt, and water. Mix them gently until a soft dough forms. Knead it thoroughly, pressing and folding, feeling it transform beneath your hands. As it rises, it doubles in size, the yeast working its magic, creating pockets of air that will give the bread its soft, airy texture.
+            bread: `
+            Baking bread is an ancient craft, cherished across cultures and generations. First, gather your ingredients: flour, yeast, salt, and water. Mix them gently until a soft dough forms. Knead it thoroughly, pressing and folding, feeling it transform beneath your hands. As it rises, it doubles in size, the yeast working its magic, creating pockets of air that will give the bread its soft, airy texture.
     
     Shape the dough into a loaf, then let it rise again, covering it with a damp cloth. Preheat your oven, the heat necessary to transform the dough into golden perfection. The scent of baking bread fills the kitchen, a comforting aroma that promises warmth and nourishment. When the crust is golden and firm, remove the loaf and let it cool, resisting the temptation to slice it too soon.
     
@@ -237,6 +259,17 @@
                 element.style.display = 'none';
             }
         }
+        function changeFontSize(action) {
+        const textDisplay = document.getElementById('text-display');
+        let currentFontSize = window.getComputedStyle(textDisplay, null).getPropertyValue('font-size');
+        currentFontSize = parseFloat(currentFontSize);
+
+        if (action === 'increase') {
+            textDisplay.style.fontSize = (currentFontSize + 1) + 'px';
+        } else if (action === 'decrease') {
+            textDisplay.style.fontSize = (currentFontSize - 1) + 'px';
+        }
+    }
     </script>
 </body>
 
