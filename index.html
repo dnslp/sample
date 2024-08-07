@@ -119,7 +119,8 @@
             <li>Record in a small, quiet room</li>
             <li>Make sure there are no background sounds (fans, traffic, etc.)</li>
         </ul>
-        <button class="toggle-button" onclick="toggleInstructions('iphone-instructions')">Instructions for iPhone</button>
+        <button class="toggle-button" onclick="toggleInstructions('iphone-instructions')">Instructions for
+            iPhone</button>
         <div id="iphone-instructions" class="instructions">
             <h3>Instructions for Using Voice Memos on iPhone to Save and Upload a Recording</h3>
             <ol>
@@ -141,15 +142,17 @@
                 </li>
                 <li><strong>Upload the Recording</strong>
                     <ol>
-                        <li>Open the <a href="https://forms.gle/7XyhAcujb8VqiGRV9">Google Form </a> where you need to upload the recording.</li>
-                        <li>Tap the Upload button (usually represented by a paperclip or a cloud icon).</li>
+                        <li>Open the <a href="https://forms.gle/7XyhAcujb8VqiGRV9">Google Form </a> where you need to
+                            upload the recording.</li>
+                        <li>Tap the "Add File" button.</li>
                         <li>Navigate to the location where you saved the recording.</li>
                         <li>Select the recording to upload it.</li>
                     </ol>
                 </li>
             </ol>
         </div>
-        <button class="toggle-button" onclick="toggleInstructions('android-instructions')">Instructions for Android</button>
+        <button class="toggle-button" onclick="toggleInstructions('android-instructions')">Instructions for
+            Android</button>
         <div id="android-instructions" class="instructions">
             <h3>Instructions for Using Voice Recorder on Android to Save and Upload a Recording</h3>
             <ol>
@@ -162,14 +165,15 @@
                 </li>
                 <li><strong>Save the Recording to Files</strong>
                     <ol>
-                        <li>The recording is usually saved automatically. To locate it, go to the Files or My Files app on your device.</li>
+                        <li>The recording is usually saved automatically. To locate it, go to the Files or My Files app
+                            on your device.</li>
                         <li>Navigate to the Audio or Recordings folder.</li>
                     </ol>
                 </li>
                 <li><strong>Upload the Recording</strong>
                     <ol>
                         <li>Open the <a href="https://forms.gle/7XyhAcujb8VqiGRV9">Google Form </a></li>
-                        <li>Tap the Upload button (usually represented by a paperclip or a cloud icon).</li>
+                        <li>Tap the "Add File" button.</li>
                         <li>Navigate to the Audio or Recordings folder where your recording is saved.</li>
                         <li>Select the recording to upload it.</li>
                     </ol>
@@ -185,7 +189,7 @@
             <option value="moon">Moon</option>
         </select>
         <div id="text-display"></div>
-      
+
     </div>
     <script>
         const textPassages = {
@@ -217,22 +221,22 @@
     
     Legends speak of moon goddesses and mythical creatures that inhabit this glowing orb. The moon continues to be a source of wonder, its silent presence a reminder of the vastness and mystery of the universe. Whether observed through a telescope or admired with the naked eye, the moon remains a symbol of beauty and enigma.`,
         };
-    
+
         function displayText() {
             const dropdown = document.getElementById('dropdown');
             const textDisplay = document.getElementById('text-display');
             const selectedValue = dropdown.value;
             textDisplay.innerText = textPassages[selectedValue] || '';
         }
-    
+
         function toggleInstructions(id) {
-        const element = document.getElementById(id);
-        if (element.style.display === 'none' || element.style.display === '') {
-            element.style.display = 'block';
-        } else {
-            element.style.display = 'none';
+            const element = document.getElementById(id);
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
         }
-    }
     </script>
 </body>
 
